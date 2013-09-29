@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module rename-to='laboratory'>
+	<!-- Inherit the core Web Toolkit stuff. -->
+	<inherits name='com.google.gwt.user.User' />
+
+	<!-- Inherit the default GWT style sheet. You can change -->
+	<!-- the theme of your GWT application by uncommenting -->
+	<!-- any one of the following lines. -->
+	<!--inherits name='com.google.gwt.user.theme.standard.Standard'/ -->
+	<inherits name='com.google.gwt.widgetideas.WidgetIdeas' />
+	<inherits name="com.extjs.gxt.desktop.WebDesktop" />
+	<inherits name="com.extjs.gxt.ui.GXT" />
+
+	<inherits name='com.google.gwt.user.theme.chrome.Chrome' />
+	<!-- <inherits name='com.google.gwt.user.theme.dark.Dark'/> -->
+
+	<!-- Other module inherits -->
+
+	<!-- Specify the app entry point class. -->
+	<entry-point class='ru.murzoid.project.client.Laboratory' />
+
+	<!-- Specify the paths for translatable code -->
+	<source path='client' />
+	<source path='shared' />
+	<inherits name="com.google.gwt.widgetideas.BasicTable" />
+	<inherits name="com.extjs.gxt.charts.Chart" />
+
+
+	<!--inherits name="com.allen_sauer.gwt.log.gwt-log-OFF" /> <extend-property 
+		name="log_level" values="TRACE,DEBUG,INFO,WARN,ERROR,FATAL,OFF" /> <set-property 
+		name="compiler.emulatedStack" value="true" /> <set-configuration-property 
+		name="compiler.emulatedStack.recordLineNumbers" value="true" /> <set-configuration-property 
+		name="compiler.emulatedStack.recordFileNames" value="true" / -->
+
+
+</module>

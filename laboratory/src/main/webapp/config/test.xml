@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>File properties for test</comment>
+	<!-- время теста в секундах -->
+	<entry key="time">1200</entry>
+	<!-- число вопросов в тесте -->
+	<entry key="numberQuestion">10</entry>
+</properties>

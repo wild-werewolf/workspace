@@ -1,0 +1,102 @@
+/** Add css rules here for your application. */
+/** Example rules used by the template application (remove for your app) */
+.style_H1 {
+	font-size: 4em;
+	font-weight: bold;
+	color: #777777;
+	margin: 40px 0px 70px;
+	text-align: center;
+}
+
+#sendButton {
+	display: block;
+	margin: 0px 2.5px 0px 0px;
+}
+
+#regButton {
+	display: block;
+	margin: 10px;
+}
+/** Most GWT widgets already have a style name defined */
+.gwt-DialogBox {
+	width: 400px;
+}
+
+.bodyDesctop {
+	background-color: #213452;
+	background-image: url("images/wallpaper/bg.gif");
+	background-position: left top;
+	background-repeat: no-repeat;
+	font: normal 12px tahoma, arial, verdana, sans-serif;
+	margin: 0;
+	padding: 0;
+	border: 0 none;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.desctopWallpaper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+.dialogVPanel {
+	margin: 5px;
+}
+/**.vacuumfilter {
+  background: url("images/icons/zomb.gif") !important;
+}*/
+.vacuumfilterIcon {
+	background: url("images/icons/filter.png") !important;
+}
+
+.testfilterIcon {
+	background: url("images/icons/test.png") !important;
+}
+
+.usersS {
+	background: url("images/icons/users.jpg") !important;
+}
+
+.serverResponseLabelError {
+	color: red;
+}
+
+/** Set ids using widget.getElement().setId("idOfElement") */
+#closeVButton {
+	margin: 15px 10px 10px;
+}
+
+#closeRButton {
+	margin: 15px 6px 6px;
+}
+
+#sendRegButton {
+	margin: 6px 6px 6px;
+}
+
+.verticalPanel {
+	border: 4px double black;
+	background-color: orange;
+	padding: 10px;
+}
+
+.horizontalPanel {
+	margin: 5px 5px 2.5px 5px;
+}
+
+.inputName {
+	margin: 5px 5px 2.5px 5px;
+}
+
+.inputPass {
+	margin: 5px 5px 2.5px 5px;
+}
+
+#regButton {
+	margin: 0px 3.5px 0px 2.5px;
+}
