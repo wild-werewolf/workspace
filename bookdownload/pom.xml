@@ -1,0 +1,176 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ru.murzoid</groupId>
+  <artifactId>bookdownload</artifactId>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
+  <properties>
+    <gwt.version>2.5.1</gwt.version>
+    <smartgwt.version>3.0</smartgwt.version>
+    <gwt-plugin.extraJvmArgs>-Xms512M -Xmx768M -XX:PermSize=128M -XX:MaxPermSize=256M</gwt-plugin.extraJvmArgs>
+    <gwt-plugin.localWorkers>4</gwt-plugin.localWorkers>
+    <coreGuiParams/>
+    <gwt.userAgent>ie8,ie9,gecko1_8,safari</gwt.userAgent>
+    <gwt.draftCompile>false</gwt.draftCompile>
+    <gwt.soyc>false</gwt.soyc>
+    <gwt.style>PRETTY</gwt.style>
+    <gwt.locale>en,ru</gwt.locale>
+    <gwt.fallback.locale>en,ru</gwt.fallback.locale>
+
+    <enable.tags>true</enable.tags>
+  </properties>
+  <dependencies>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.11</version>
+    </dependency>
+	
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-servlet</artifactId>
+      <version>${gwt.version}</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-user</artifactId>
+      <version>${gwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.gwt</groupId>
+      <artifactId>gwt-dev</artifactId>
+      <version>${gwt.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.googlecode.gflot</groupId>
+      <artifactId>gflot</artifactId>
+      <version>2.4.2</version>
+      <scope>provided</scope>
+    </dependency>
+	
+	<dependency>
+		<groupId>org.jopendocument</groupId>
+		<artifactId>jdom</artifactId>
+		<version>1.1.1</version>
+	</dependency>
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	
+    <dependency>
+      <groupId>org.jboss.spec.javax.ejb</groupId>
+      <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+      <version>1.0.1.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging</artifactId>
+      <version>3.1.0.GA</version>
+    </dependency>
+	
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.1</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>gwt-maven-plugin</artifactId>
+        <!-- Cant upgrade to 2.5.0 plugin because gwt dev mode doesnt autorefresh -->
+        <version>2.5.1</version>
+        <configuration>
+		  <webappDirectory>${project.build.directory}/books.war</webappDirectory>
+          <noServer>true</noServer>
+          <inplace>false</inplace>
+<!--          <logLevel>INFO' -bindAddress 0.0.0.0 -logLevel 'INFO</logLevel> -->
+          <logLevel>INFO</logLevel> 
+          <runTarget>${coreGuiRunTarget}</runTarget>
+          <extraJvmArgs>${gwt-plugin.extraJvmArgs}</extraJvmArgs>
+          <localWorkers>${gwt-plugin.localWorkers}</localWorkers>
+          <draftCompile>${gwt.draftCompile}</draftCompile>
+          <soyc>${gwt.soyc}</soyc>
+          <buildOutputDirectory>target/gwtclasses</buildOutputDirectory>
+          <hostedWebapp>target/hostedWar</hostedWebapp>
+          <debugSuspend>false</debugSuspend>
+          <style>${gwt.style}</style>
+          <strict>true</strict>
+                    <!-- compiles gwt artifacts like symbolMap outside of war so it doesnt get packaged -->
+          <deploy>${project.build.directory}/gwt-deploy</deploy>
+        </configuration>
+
+        <executions>
+          <execution>
+            <id>gwt-goals</id>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+                        <!-- This id is what does the trick, don't change it. For this to work maven 2.2.0 and later is needed. -->
+            <id>default-cli</id>
+            <goals>
+              <goal>debug</goal>
+            </goals>
+            <configuration>
+              <module>ru.murzoid.bookdownload.BookDownload</module>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+		  <webappDirectory>${project.build.directory}/books.war</webappDirectory>
+          <archive>
+            <manifest>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+            </manifest>
+            <manifestEntries>
+              <Build-Number>${buildNumber}</Build-Number>
+            </manifestEntries>
+          </archive>
+          <webResources>
+            <resource>
+              <filtering>false</filtering>
+              <directory>${basedir}/src/main/webapp</directory>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>add-gwt-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>${basedir}/target/generated-sources/gwt</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>

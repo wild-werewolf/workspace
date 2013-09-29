@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+                         "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+ <!-- Servlets -->
+ <servlet>
+  <servlet-name>greetServlet</servlet-name>
+  <servlet-class>ru.murzoid.bookdownload.server.BookLoaderServiceImpl</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>greetServlet</servlet-name>
+  <url-pattern>/bookdownload/greet</url-pattern>
+ </servlet-mapping>
+ <!-- Default page to serve -->
+    <mime-mapping>
+        <extension>fb2</extension>
+        <mime-type>text/x-setext</mime-type>
+    </mime-mapping>
+ <welcome-file-list>
+  <welcome-file>BookDownload.html</welcome-file>
+ </welcome-file-list>
+</web-app>
